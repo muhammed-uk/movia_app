@@ -1,5 +1,6 @@
 class Api::V1::ShowsController < ApplicationController
   before_action :set_show, only: [:show]
+  before_action :check_permission!
 
   # GET /api/v1/shows
   def index
@@ -7,7 +8,8 @@ class Api::V1::ShowsController < ApplicationController
       .new(Show.all)
       .call(show_query_params)
 
-    render json: @shows
+    render json: @shows.includes(:screen, :movie),
+           each_serializer: AbstractShowSerializer
   end
 
   # GET /api/v1/shows/1

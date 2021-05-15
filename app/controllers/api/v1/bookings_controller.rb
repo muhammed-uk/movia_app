@@ -6,10 +6,14 @@ class Api::V1::BookingsController < ApplicationController
   # GET /api/v1/bookings
   def index
     @bookings = Play::QueryScope
-      .new(Booking.all)
-      .call(booking_query_params)
+                  .new(Booking.all)
+                  .call(booking_query_params)
 
-    render json: @bookings
+    render json: @bookings.includes(
+      :user,
+      show: [:screen, :movie],
+      show_seats: [:screen_seat]
+    )
   end
 
   # GET /api/v1/bookings/1

@@ -5,10 +5,18 @@ class Show < ApplicationRecord
 
   validates_uniqueness_of :timeslot, scope: :screen_id
 
-  def all_seat_with_id_and_number
+  def all_seats
     screen
       .screen_seats
-      .pluck(:id, :seat_number)
+      .select(:id, :seat_number)
+  end
+
+  def all_seat_with_id_and_number
+    all_seats.pluck(:id, :seat_number)
+  end
+
+  def all_seats_numbers
+    all_seats.pluck(:seat_number)
   end
 
   def filled_seat_numbers

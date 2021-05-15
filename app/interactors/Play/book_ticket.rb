@@ -53,7 +53,7 @@ module Play
       fail_the_context("#{requested_occupied_seats.join(', ')} is/are already booked") if
         requested_occupied_seats.present?
 
-      context.seats_to_be_booked = ScreenSeat.where(seat_number: seats_to_be_booked)
+      context.seats_to_be_booked = show.screen.screen_seats.where(seat_number: seats_to_be_booked)
     end
 
     def perform_booking
