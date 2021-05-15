@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :bookings, only: %i[create show index]
       resources :movies
-      resources :shows, only: %i[create show index]
+      resources :shows, only: %i[show index]
     end
   end
 
