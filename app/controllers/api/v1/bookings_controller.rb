@@ -1,12 +1,15 @@
 class Api::V1::BookingsController < ApplicationController
+  before_action :check_permission!, except: :create
   before_action :set_booking, only: [:show, :update, :destroy]
   around_action :wrap_in_transaction, only: :create
 
   # GET /api/v1/bookings
   def index
-    @booking = Booking.all
+    @bookings = Play::QueryScope
+      .new(Booking.all)
+      .call(booking_query_params)
 
-    render json: @booking
+    render json: @bookings
   end
 
   # GET /api/v1/bookings/1
@@ -31,24 +34,12 @@ class Api::V1::BookingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /api/v1/bookings/1
-  def update
-    if @booking.update(booking_params)
-      render json: @booking
-    else
-      render json: @booking.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /api/v1/bookings/1
-  def destroy
-    @booking.destroy
-  end
 
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_booking
     @booking = Booking.find(params[:id])
+    check_for_instance(@booking, 'Booking', params[:id])
   end
 
   # Only allow a list of trusted parameters through.
@@ -56,11 +47,16 @@ class Api::V1::BookingsController < ApplicationController
     params.permit(:show_id, seats: [])
   end
 
+  def booking_query_params
+    params.permit(:user_id, :show_id)
+  end
+
   def setup_anonymous_user
+    random_string = SecureRandom.alphanumeric
     @current_user = User.create!(
-      name: "anonymous-user-#{request.uuid}",
-      email: "anonymous#{request.uuid}@gmail.com",
-      password: 'anonymous_password'
+      name: "user-#{random_string}",
+      email: "anonymous#{random_string}@gmail.com",
+      password: random_string
     )
   end
 end

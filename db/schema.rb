@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_13_201352) do
+ActiveRecord::Schema.define(version: 2021_05_14_224938) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_201352) do
     t.string "password"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "user_type", default: "user"
   end
 
   add_foreign_key "bookings", "shows"
