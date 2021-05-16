@@ -1,5 +1,6 @@
 Movie Booking App
 ============
+This is a small movie booking application with limited set of APIs.
 
 ## Prerequisites
 
@@ -48,12 +49,21 @@ from app directory.
 ## Exposed APIs
 
 ### Movies APIs
-```
+```ruby
 # GET /api/v1/movies
 # GET /api/v1/movies/:id
 # POST /api/v1/movies
 # PUT /api/v1/movies/:id
 # DELETE /api/v1/movies/:id
+```
+#### params
+```ruby
+# POST /api/v1/movies
+# To filter the shows, you can pass following params
+params = {
+  "title": "Spider Man"
+}
+
 ```
 
 ### Shows APIs
@@ -61,9 +71,38 @@ from app directory.
 # GET /api/v1/shows
 # GET /api/v1/shows/:id
 ```
+#### params
+```ruby
+# GET /api/v1/shows
+# To filter the shows, you can pass following params
+params = {
+  date: "2021-05-16",
+  timeslot: "8-11"
+}
+
+```
 
 ### Booking APIs
 ```
 # GET /api/v1/bookings
 # POST /api/v1/bookings
+```
+#### params
+```ruby
+# GET /api/v1/bookings
+# To filter the bookings, you can pass following params
+params = {
+  user_id: "1",
+  show_id: "1"
+}
+
+# POST /api/v1/bookings
+params = {
+  show_id: "1",
+  seats: [
+    "A-29",
+    "A-30",
+    "B-1"
+  ]
+}
 ```
