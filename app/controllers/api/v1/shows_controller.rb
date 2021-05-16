@@ -21,6 +21,7 @@ class Api::V1::ShowsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_show
     @show = Show.find_by(id: params[:id])
+    check_for_instance(@movie, 'Show', params[:id])
   end
 
   def show_query_params

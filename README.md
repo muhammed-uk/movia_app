@@ -1,24 +1,69 @@
-# README
+Movie Booking App
+============
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Prerequisites
 
-Things you may want to cover:
+Working setup requires `git` and `rails` pre-installed.
 
-* Ruby version
+## Setting up the Movie App
 
-* System dependencies
+Clone and move into repository
 
-* Configuration
+`git clone https://github.com/muhammed-uk/movia_app.git movie_app`
 
-* Database creation
+`cd movie_app`
 
-* Database initialization
+## Installation
 
-* How to run the test suite
+from the app directory
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+bundle install
 
-* Deployment instructions
+rake db:setup
+```
 
-* ...
+## Starting the application
+
+```shell
+rails s
+```
+Now the application should be up and running on port 3000.
+If you want to change the port please pass -p PORT_NUMBER
+
+```shell
+rails s -p 5000
+```
+
+## Running the Test
+
+This application has automated testcases setup with `RSpec`
+In order to run the testcase, Please enter
+
+```shell
+rspec
+```
+from app directory.
+
+## Exposed APIs
+
+### Movies APIs
+```
+# GET /api/v1/movies
+# GET /api/v1/movies/:id
+# POST /api/v1/movies
+# PUT /api/v1/movies/:id
+# DELETE /api/v1/movies/:id
+```
+
+### Shows APIs
+```
+# GET /api/v1/shows
+# GET /api/v1/shows/:id
+```
+
+### Booking APIs
+```
+# GET /api/v1/bookings
+# POST /api/v1/bookings
+```
