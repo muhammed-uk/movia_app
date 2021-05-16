@@ -47,8 +47,14 @@ rspec
 from app directory.
 
 ## Exposed APIs
+This application exposes few set of APIs, some are available public
+few are restricted to Admin only.
+
+Admin APIs expects Basic Auth with username as the user email and password as password.
+You can find admin credentials in `db/seeds.rb` file.
 
 ### Movies APIs
+Note: All the listed APIs are admin restricted.
 ```ruby
 # GET /api/v1/movies
 # GET /api/v1/movies/:id
@@ -84,7 +90,7 @@ params = {
 
 ### Booking APIs
 ```
-# GET /api/v1/bookings
+# GET /api/v1/bookings (restricted to admins only.)
 # POST /api/v1/bookings
 ```
 #### params
