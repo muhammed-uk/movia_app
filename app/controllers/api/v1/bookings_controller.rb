@@ -1,6 +1,5 @@
 class Api::V1::BookingsController < ApplicationController
   before_action :check_permission!, except: :create
-  before_action :set_booking, only: [:show, :update, :destroy]
   around_action :wrap_in_transaction, only: :create
 
   # GET /api/v1/bookings
@@ -11,14 +10,9 @@ class Api::V1::BookingsController < ApplicationController
 
     render json: @bookings.includes(
       :user,
-      show: [:screen, :movie],
+      show: %i[screen movie],
       show_seats: [:screen_seat]
     )
-  end
-
-  # GET /api/v1/bookings/1
-  def show
-    render json: @booking
   end
 
   # POST /api/v1/bookings
@@ -38,14 +32,7 @@ class Api::V1::BookingsController < ApplicationController
     end
   end
 
-
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_booking
-    @booking = Booking.find(params[:id])
-    check_for_instance(@booking, 'Booking', params[:id])
-  end
-
   # Only allow a list of trusted parameters through.
   def booking_params
     params.permit(:show_id, seats: [])
@@ -53,14 +40,5 @@ class Api::V1::BookingsController < ApplicationController
 
   def booking_query_params
     params.permit(:user_id, :show_id)
-  end
-
-  def setup_anonymous_user
-    random_string = SecureRandom.alphanumeric
-    @current_user = User.create!(
-      name: "user-#{random_string}",
-      email: "anonymous#{random_string}@gmail.com",
-      password: random_string
-    )
   end
 end

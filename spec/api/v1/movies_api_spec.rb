@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
-RSpec.describe Api::V1::MoviesController, type: :request do
+RSpec.describe Api::V1::MoviesController, type: :request, legacy: true do
   before(:all) do
     create_normal_user
     create_admin_user

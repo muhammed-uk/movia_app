@@ -8,4 +8,13 @@ module ApiHelper
       }, status: :not_found
     end
   end
+
+  def setup_anonymous_user
+    random_string = SecureRandom.alphanumeric
+    User.create!(
+      name: "user-#{random_string}",
+      email: "anonymous#{random_string}@gmail.com",
+      password: random_string
+    )
+  end
 end
