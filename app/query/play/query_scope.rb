@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Play
   class QueryScope
     def initialize(initial_scope)

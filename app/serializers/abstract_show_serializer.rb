@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AbstractShowSerializer < ActiveModel::Serializer
   attributes :id, :timeslot, :details
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BasicAuthenticator
   extend ActiveSupport::Concern
 
@@ -9,7 +11,7 @@ module BasicAuthenticator
     before_action :authenticate_user!, if: :require_authentication?
   end
 
-  protected  def check_permission!
+  protected def check_permission!
     head :unauthorized unless current_user.try(:admin?)
   end
 

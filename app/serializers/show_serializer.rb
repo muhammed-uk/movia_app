@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShowSerializer < ActiveModel::Serializer
   attributes :id, :seat_details
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Seats
   class CreateSeatsForScreen
     include Interactor
@@ -10,8 +12,6 @@ module Seats
 
     private
 
-    def create_seats
-
-    end
+    def create_seats; end
   end
 end

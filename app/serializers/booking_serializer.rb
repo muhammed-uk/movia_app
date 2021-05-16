@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookingSerializer < ActiveModel::Serializer
   attributes :id, :booking_date, :show_details, :total_price
   belongs_to :user
