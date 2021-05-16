@@ -75,13 +75,12 @@ FactoryBot.define do
       timestamp = Time.now
       bulk_seat_params = evaluator.selected_seats.map do |seat|
         {
-          booking_id: booking.id,
           screen_seat_id: seat.id,
           created_at: timestamp,
           updated_at: timestamp
         }
       end
-      booking.show.show_seats.insert_all!(bulk_seat_params)
+      evaluator.show.show_seats.insert_all!(bulk_seat_params)
     end
   end
 end

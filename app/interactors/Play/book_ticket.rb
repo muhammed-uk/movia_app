@@ -84,7 +84,6 @@ module Play
       timestamp = Time.now
       seats_to_be_booked.map do |seat|
         {
-          booking_id: booking.id,
           screen_seat_id: seat.id,
           created_at: timestamp,
           updated_at: timestamp

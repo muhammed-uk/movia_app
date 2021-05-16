@@ -25,7 +25,7 @@ class BookingSerializer < ActiveModel::Serializer
       show_id: object.show.id,
       screen: object.show.screen.name,
       movie: object.show.movie.title,
-      booked_seats: seats_booked,
+      booked_seats: seats_booked
     }
   end
 end

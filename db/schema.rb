@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_224938) do
+ActiveRecord::Schema.define(version: 2021_05_16_143227) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -48,10 +48,8 @@ ActiveRecord::Schema.define(version: 2021_05_14_224938) do
     t.string "status"
     t.integer "screen_seat_id", null: false
     t.integer "show_id", null: false
-    t.integer "booking_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["booking_id"], name: "index_show_seats_on_booking_id"
     t.index ["screen_seat_id"], name: "index_show_seats_on_screen_seat_id"
     t.index ["show_id"], name: "index_show_seats_on_show_id"
   end
@@ -79,7 +77,6 @@ ActiveRecord::Schema.define(version: 2021_05_14_224938) do
   add_foreign_key "bookings", "shows"
   add_foreign_key "bookings", "users"
   add_foreign_key "screen_seats", "screens"
-  add_foreign_key "show_seats", "bookings"
   add_foreign_key "show_seats", "screen_seats"
   add_foreign_key "show_seats", "shows"
   add_foreign_key "shows", "movies"

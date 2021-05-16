@@ -5,17 +5,12 @@ require 'spec_helper'
 
 RSpec.describe Api::V1::ShowsController, type: :request, legacy: true do
   before(:all) do
-    create_normal_user
-    create_admin_user
-    3.times { create(:movie) }
+    generate_sample_data
     @first_movie = Movie.first
-    @screen_with_seats = create(:screen, :with_screen_seats)
-    %w[12-3 4-7 8-11].each do |timeslot|
-      create(:show, screen: @screen_with_seats, timeslot: timeslot, movie: @first_movie)
-    end
+    @screen_with_seats = Screen.first
     @show = @screen_with_seats.shows.first
     @selected_seats = @screen_with_seats.screen_seats.limit(3)
-    @booking = create(:booking, show: @show, selected_seats: @selected_seats)
+    @booking = create_booking(@show, @selected_seats)
   end
 
   describe '# GET /api/v1/shows' do
