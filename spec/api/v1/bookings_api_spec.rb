@@ -38,11 +38,11 @@ RSpec.describe Api::V1::BookingsController, type: :request, legacy: true do
               }
 
               # failing the process manually
-              expect(ShowSeat).to receive(:insert_all!).and_raise(StandardError, 'Invalid')
+              expect(ShowSeat).to receive(:insert_all!).and_raise(StandardError, 'Service unavailable')
 
               post api_v1_bookings_path, params: params
               expect(JSON.parse(response.body)['error'])
-                .to eq(["Oops.. Something went wrong. \n Error: Invalid"])
+                .to eq(["Oops.. Something went wrong. \n Error: Service unavailable"])
 
               expect(User.count).to eq(previous_user_count)
               expect(Booking.count).to eq(previous_booking_count)

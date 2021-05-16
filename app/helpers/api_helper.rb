@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApiHelper
   def check_for_instance(instance, class_name, id)
     if instance.nil?
